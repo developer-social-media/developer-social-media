@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { logout } from '../../app/store';
 
 
+
 const Navbar = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
   const dispatch = useDispatch();
@@ -29,7 +30,6 @@ const Navbar = () => {
         ) : (
           <div>
             {/* The navbar will show these links before you log in */}
-
             <AppBar position='static'>
               <Container maxWidth="xl">
                 <Link to="/login">Login</Link>
