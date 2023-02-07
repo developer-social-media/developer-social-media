@@ -4,7 +4,6 @@ const {db, models: {User, Post, Project, Comments, Post_like, Comment_Like} } = 
 const { faker } = require('@faker-js/faker')
 const Report = require('../server/db/models/Report')
 
-
 /**
  * seed - this function clears the database, updates tables to
  *      match the models, and populates the database.
@@ -58,7 +57,6 @@ async function seed() {
       is_banned: false,
      })
 
-
      const aaron = await User.create({ 
       username: 'jerkface420',
       password: 'password',
@@ -73,8 +71,6 @@ async function seed() {
       is_banned: true,
      })
 
-
-     
   // User adding another user as a friend
      await nic.addFriend(johnny)
      await johnny.addFriend(nic)

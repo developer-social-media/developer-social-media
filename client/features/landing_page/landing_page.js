@@ -1,6 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { createTheme, CssBaseline, ThemeProvider, Typography, Container, Collapse, IconButton, Grid, Card, CardContent, CardMedia, CardActionArea, Stack } from '@mui/material'
+import React, { useEffect, useState, useMemo } from 'react';
+import { CssBaseline, Typography, Container, Collapse, IconButton, Grid, Card, CardContent, CardMedia, CardActionArea, Stack, Box } from '@mui/material'
+import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
+import theme from '../../app/theme';
 
+
+const darkTheme = createTheme({
+palette: {
+    mode: 'dark'
+}
+})
 
 const LandingPage = () => {
     const [checked, setChecked] = useState(false);
