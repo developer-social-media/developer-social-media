@@ -10,6 +10,7 @@ import { FormControl, TextField, Button, Autocomplete, Box } from '@mui/material
 import { fetchUserAsync } from '../single_user/singleUserSlice';
 import { asyncCreatePost, asyncFetchPosts } from '../globalfeed/postslice';
 import SideNav from '../home/SideNav'
+import FriendList from '../friendlist/friendlist';
 
 
 
@@ -55,11 +56,16 @@ useEffect(() => {
 
   return (
 
-    <div id='home-container' className='flex flex-col' style={{marginTop: 45 }}>
-      <div id='home-left-container' style={{width: '33%'}}><SideNav/></div>
+    <div id='home-container'  style={{marginTop: 5, display: 'flex', flexDirection: 'row' }}>
+      <div id='home-left-container' style={{width: '25%'}}><SideNav/></div>
       
-      <div id='home-left-container' style={{width: '50%', marginTop: 20}} ><GlobalFeed /></div>
-      <div id='home-right-container' style={{width: '33%'}}  ></div>
+      <div id='home-left-container' style={{width: '50%', marginTop: 20}} ><GlobalFeed />
+      </div>
+      <div id='home-right-container' style={{width: '25%'}}  >
+      <FriendList/>
+      </div>
+      
+      
     </div>
 
   );

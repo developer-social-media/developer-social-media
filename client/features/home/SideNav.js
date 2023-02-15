@@ -15,6 +15,10 @@ import ChatIcon from '@mui/icons-material/Chat';
 import { Link } from 'react-router-dom';
 import Person2Icon from '@mui/icons-material/Person2';
 import theme from "../../app/theme";
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import CreateIcon from '@mui/icons-material/Create';
+import HelpIcon from '@mui/icons-material/Help';
+import WorkIcon from '@mui/icons-material/Work';
 
 /**
  * COMPONENT
@@ -54,11 +58,42 @@ useEffect(() => {
     <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
            <img style={{height: '100%', width: '100%'}} src='webdevsocial.png' />
           <ButtonGroup sx={{width: 4/5}} orientation="vertical" variant='text' aria-label='vertical outlined button group'>
-            <Button theme={theme} color='primary' onClick={(e) => navigate(`/users/${user.id}`)} sx={{justifyContent: 'flex-start'}} > <Person2Icon sx={{width: 32, height: 32}} />{user.first_name} {user.last_name}</Button>
 
-            <Button theme={theme} color='primary' onClick={(e) => navigate('/project')} sx={{justifyContent: 'flex-start'}} ><SourceIcon sx={{width: 32, height: 32}}/>Projects</Button>
-            <Button theme={theme} color='primary' sx={{justifyContent: 'flex-start'}} ><PeopleIcon sx={{width: 32, height: 32}} />Friends</Button>
-            <Button theme={theme} color='primary' onClick={(e) => navigate('/chat')} sx={{justifyContent: 'flex-start'}} ><ChatIcon sx={{width: 32, height: 32}}/>Chat</Button>
+ 
+            <Button theme={theme} color='primary' onClick={(e) => navigate(`/users/${user.id}`)} sx={{justifyContent: 'flex-start'}} >
+              <Person2Icon sx={{width: 32, height: 32}} />
+              {user.first_name} {user.last_name}
+            </Button>
+
+            <Button theme={theme} color='primary' onClick={(e) => navigate('/project')} sx={{justifyContent: 'flex-start'}} >
+              <WorkIcon sx={{width: 32, height: 32}}/>
+              Projects
+            </Button>
+
+            <Button theme={theme} color='primary' onClick={(e) => navigate('/project/add')} sx={{justifyContent: 'flex-start'}} >
+              <CreateIcon sx={{width: 32, height: 32}}/>
+              Create Project
+            </Button>
+            {user.is_admin ? 
+            <Button onClick={(e) => navigate('/users')} theme={theme} color='primary' sx={{justifyContent: 'flex-start'}} >
+              <PeopleIcon sx={{width: 32, height: 32}} />
+              Users
+            </Button> : null}
+
+            <Button theme={theme} color='primary' onClick={(e) => navigate('/chat')} sx={{justifyContent: 'flex-start'}} >
+            <ChatIcon sx={{width: 32, height: 32}}/>
+            Chat
+            </Button>
+
+            <Button theme={theme} color='primary' onClick={(e) => navigate('/friendrequests')} sx={{justifyContent: 'flex-start'}} >
+            <PersonAddIcon sx={{width: 32, height: 32}}/>
+            Friend Requests
+            </Button>
+
+            <Button theme={theme} color='primary' onClick={(e) => navigate('/contactUs')} sx={{justifyContent: 'flex-start'}} >
+              <HelpIcon sx={{width: 32, height: 32}}/>
+              Contact Us
+            </Button>
 
           </ButtonGroup>
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   fetchFriendshipById,
@@ -7,6 +7,7 @@ import {
 import { fetchUserAsync, selectUser } from "../single_user/singleUserSlice";
 import { selectChat, fetchChat, sendMessage } from "./messagesslice";
 import { useParams, useNavigate } from "react-router-dom";
+import { Send } from "@mui/icons-material";
 
 const Chatbox = ({receiverId}) => {
   const dispatch = useDispatch();
@@ -18,14 +19,12 @@ const Chatbox = ({receiverId}) => {
   console.log(chat, "chat")
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
-//   const friendId =
-//     chat && chat.length && userId === chat[0].senderId
-//       ? chat[0].receiverId
-//       : chat && chat.length && userId === chat[0].receiverId
-//       ? chat[0].senderId
-//       : null;
+  const bottomDiv = useRef(null);
 
-      console.log(receiverId, "friendId")
+  useEffect(() => {
+    bottomDiv.current?.scrollIntoView({ behavior: "smooth" });
+  });
+
   const chats = {
     userId: userId,
     otherId: receiverId,
@@ -46,18 +45,20 @@ const Chatbox = ({receiverId}) => {
       senderId: userId,
       receiverId: receiverId,
     };
-    console.log(messageObj, "messageObj");
     dispatch(sendMessage(messageObj)).then(() => {
       dispatch(fetchChat(chats));
+    }).then(() => {
+      setMessage("")
     });
   };
 
   return (
-    <div className="container truncate overflow-hidden">
-      <div style={{ overflow: "hidden" }}>
+    <div>
+      <div>
+        <div ref={bottomDiv} />
         {messages.map((message) =>
           message.senderId === userId ? (
-            <div style={{ display: "flex", justifyContent: "flex-end" }}>
+            <div style={{ display: "flex", justifyContent: "flex-end", }}>
               <div
                 style={{
                   backgroundColor: "blue",
@@ -65,6 +66,8 @@ const Chatbox = ({receiverId}) => {
                   padding: "1rem",
                   margin: "1rem",
                   borderRadius: "1rem",
+                  maxWidth: "50%",
+                  height: "auto",
                 }}
               >
                 {message.content}
@@ -75,14 +78,16 @@ const Chatbox = ({receiverId}) => {
               </div>
             </div>
           ) : (
-            <div style={{ display: "flex", justifyContent: "flex-start" }}>
+            <div style={{ display: "flex" , position: 'flex-start'}}>
               <div
                 style={{
-                  backgroundColor: "green",
+                  backgroundColor: "gray",
                   color: "white",
                   padding: "1rem",
                   margin: "1rem",
                   borderRadius: "1rem",
+                  maxWidth: "50%",
+                  height: "auto",
                 }}
               >
                 {message.content}
@@ -95,15 +100,28 @@ const Chatbox = ({receiverId}) => {
           )
         )}
       </div>
-      {/*sticky footer*/}
-      <div style={{ position: "absolute", bottom: "0rem", right: "10px" }}>
-        <form onSubmit={handleSendMessage}>
+      {/*display chat postion at the bottom of the chatbox*/}
+      <div style={{   position: "static", top: "100%", width: "100%", bottom: "8px", right: "0", fontSize: "18px" }}>
+        <form onSubmit={handleSendMessage}
+          style={{ display: "flex", justifyContent: "center", position: "sticky", bottom: "0", width: "50%", bottom: "8px", right: "50px", fontSize: "18px" }}
+        >
           <input
             type="text"
             value={message}
+            placeholder="Type a message..."
             onChange={(e) => setMessage(e.target.value)}
+            style={{
+              width: "90%",
+              height: "100%",
+              padding: "1rem",
+              margin: "1rem",
+              borderRadius: "1rem",
+              justifyContent: "flex-end",
+              }}
           />
-          <button type="submit">Send</button>
+          <button 
+          sx={{ borderRadius: "1rem", padding: "1rem", margin: "1rem"}}
+          type="submit"><Send sx={{color: 'white', display: 'flex'}} /></button>
         </form>
       </div>
     </div>

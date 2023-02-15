@@ -1,8 +1,11 @@
 import React from "react";
-import { Box, Button } from "@mui/material";
+import { Box, Button, Card } from "@mui/material";
 import { Link } from "react-router-dom";
 
 const Banned = () => {
+
+
+
   return (
     <>
       <Box
@@ -14,13 +17,24 @@ const Banned = () => {
           height: "100vh",
         }}
       >
-        <h1>You have been banned from the site</h1>
-
-        <p>Due to the violations of terms and services, your account has been banned from the platform.  Please refer to the F.A.Q for further action of your account</p>
+        <Card
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "100vh",
+            width: "100%",
+          }}
+        >
+          <h1>This account has been banned</h1>
+          <img
+            src='accessDenied.jpg'
+            alt='access denied'
+            style={{ width: "100%", height: "100%" }}
+          />
+        </Card>
       </Box>
-        <Button variant="contained" component={Link} to="/contactUs">
-            Contact Us
-        </Button>
     </>
   );
 };

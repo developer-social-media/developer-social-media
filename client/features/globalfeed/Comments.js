@@ -97,7 +97,14 @@ const commentLikeButton = (comment) => {
             <div className='flex flex-row'>
               <Link to={`/users/${comment.user.id}`}>
                 <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-              <Avatar style={{marginRight: '5px'}} src={comment.user.img_url} />
+                <img
+                width='35px'
+                height='auto' 
+                crossOrigin='true'
+                alt='avatar'
+                style={{borderRadius: '50%', marginRight: '10px'}} 
+                src={comment.user.img_url} 
+                />
               
               <div>{comment.user.first_name} {comment.user.last_name}</div>
               </div>

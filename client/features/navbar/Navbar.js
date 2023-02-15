@@ -29,6 +29,7 @@ import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
 import theme from "../../app/theme";
 
+
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
     backgroundColor: "#44b700",
@@ -93,14 +94,20 @@ const Navbar = () => {
     <div>
       <nav>
         {isBanned ? (
-          <>
-            <div>
-              <Link to="/contactUs">Contact Us</Link>
+          <div>
+            <Box sx={{ flexGrow: 1 }}>
+              <AppBar position="static" theme={theme} color="primary">
+                <Container maxWidth="xl" spacing={2} theme={theme} color='primary'>
+                  <Grid item xs={12} container color='primary'>
+                    <Grid item xs={0.5} />
+                    <Link to='/'>Banned</Link>
+                    <Grid item xs={0.5} />
+                    <Link to='/contactUs'>Contact Us</Link>
+                    </Grid>
+                  </Container>
+                </AppBar>
+              </Box>
             </div>
-            <button type="button" onClick={logoutAndRedirectHome}>
-              Logout
-            </button>
-          </>
         ) : isAdmin ? (
           <div>
             <Box sx={{ flexGrow: 1 }}>
@@ -108,17 +115,9 @@ const Navbar = () => {
             <AppBar position="static"  theme={theme} color="primary">
               <Container maxWidth="xl" spacing={2} theme={theme} color='primary'>
                 <Grid item xs={12} container color='primary'>
-                  <Grid item xs={0.5} />
-                  <Link to="/home">Home</Link>
-                  <Grid item xs={0.5}/>
-                  <Link to="/chat">Chat</Link>
-                  <Grid item xs={0.5}/>
-                  <Link to="/project/add">Create Project</Link>
-                  <Grid item xs={0.5} />
-                  <Link to="/users">Users</Link>
-                  <Grid item xs={0.5} />
-                  <Link to="/contactUs">Contact Us</Link>
-                  <Grid item xs={0.5}  />
+                  <Link to='/'>
+                  <img style={{height: '50px'}} src='devupsocialnavbar.png' />
+                  </Link>
                   <Tooltip title="Account Settings" display="flex">
                     <IconButton
                       onClick={handleClick}
@@ -142,15 +141,14 @@ const Navbar = () => {
 
                           variant="dot"
                         >
-                          <Avatar
-                            src={profilePic}
-                            style={{ width: "30px", height: "30px",
-                            mr: 0.4,
-                            ml: 0.4,
-
-                              }}
-
-                          />
+                           <img
+                width='35px'
+                height='auto' 
+                crossOrigin='true'
+                alt='avatar'
+                style={{borderRadius: '50%', marginRight: '10px'}} 
+                src={profilePic} 
+                />
                         </StyledBadge>
                       </Stack>
                     </IconButton>
@@ -192,7 +190,14 @@ const Navbar = () => {
                   >
                     <Link to={`/users/${user}`}>
                       <MenuItem>
-                        <Avatar src={profilePic} /> Profile
+                      <img
+                width='35px'
+                height='auto' 
+                crossOrigin='true'
+                alt='avatar'
+                style={{borderRadius: '50%', marginRight: '10px'}} 
+                src={profilePic} 
+                />Profile
                       </MenuItem>
                     </Link>
                     <Divider />
@@ -261,15 +266,9 @@ const Navbar = () => {
             <AppBar position="static" theme={theme} color="primary">
               <Container maxWidth="xl" theme={theme} color="primary">
                 <Grid item xs={12} container>
-                  <Grid item xs={0.5} />
-                  <Link to="/home">Home</Link>
-                  <Grid item xs={0.5} />
-                  <Link to="/chat">Chat</Link>
-                  <Grid item xs={0.5}/>
-                  <Link to="/project/add">Create Project</Link>
-                  <Grid item xs={0.5} />
-                  <Link to="/contactUs">Contact Us</Link>
-                  <Grid item xs={0.5} />
+                <Link to='/'>
+                  <img style={{height: '50px'}} src='devupsocialnavbar.png' />
+                  </Link>
                   <Tooltip title="Account Settings" display="flex" >
                     <IconButton
                       sx={{marginLeft:'auto'}}
@@ -291,10 +290,14 @@ const Navbar = () => {
                           }}
                           variant="dot"
                         >
-                          <Avatar
-                            src={profilePic}
-                            style={{ width: "30px", height: "30px" }}
-                          />
+                           <img
+                width='35px'
+                height='auto' 
+                crossOrigin='true'
+                alt='avatar'
+                style={{borderRadius: '50%', marginRight: '10px'}} 
+                src={profilePic} 
+                />
                         </StyledBadge>
                       </Stack>
                     </IconButton>

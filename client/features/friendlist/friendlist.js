@@ -11,7 +11,7 @@ import { Avatar } from '@mui/material';
 import CodeIcon from '@mui/icons-material/Code';
 
 function TabPanel(props) {
-  const { children, value, index, ...other } = props;
+  const { children, value, index, ...other } = props
 
 
 
@@ -57,33 +57,41 @@ export default function FriendList() {
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab sx={{width: '50%'}} label="Friends" {...a11yProps(0)} />
-          <Tab  sx={{width: '50%'}} label="Projects" {...a11yProps(1)} />
+          <Tab sx={{ width: '50%' }} label="Friends" {...a11yProps(0)} />
+          <Tab sx={{ width: '50%' }} label="Projects" {...a11yProps(1)} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        {user.friends && user.friends.length ? 
-        user.friends.map((friend) => 
-          <Link to ={`/users/${friend.id}`}>
-            <div style={{display: 'flex', alignItems: 'center'}}>
-            <Avatar src={friend.img_url} />
-             <div style={{marginLeft: '10px'}}>{friend.first_name} {friend.last_name}</div>
-             </div></Link>
-        ) : null}
+        {user.friends && user.friends.length ?
+          user.friends.map((friend) =>
+            <Link to={`/users/${friend.id}`}>
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <img
+                width='35px'
+                height='auto' 
+                crossOrigin='true'
+                alt='avatar'
+                style={{borderRadius: '50%', marginLeft: '5px'}} 
+                src={friend.img_url}
+
+                />
+                <div style={{ marginLeft: '10px' }}>{friend.first_name} {friend.last_name}</div>
+              </div></Link>
+          ) : null}
       </TabPanel>
       <TabPanel value={value} index={1}>
-      {user.projects && user.projects.length ? 
-        user.projects.map((project) => 
-          <Link to={`/project/${project.id}`}>
-            <div style={{display: 'flex', alignItems: 'center'}}>
-              <CodeIcon />
-            <div style={{marginLeft: '10px'}} >{project.project_name}</div>
-            </div>
+        {user.projects && user.projects.length ?
+          user.projects.map((project) =>
+            <Link to={`/project/${project.id}`}>
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <CodeIcon />
+                <div style={{ marginLeft: '10px' }} >{project.project_name}</div>
+              </div>
             </Link>
-        ) : null}
+          ) : null}
       </TabPanel>
       <TabPanel value={value} index={2}>
-        
+
       </TabPanel>
     </Box>
   );

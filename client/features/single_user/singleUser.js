@@ -101,12 +101,13 @@ console.group(user.img_url)
                    {user.id !== loggedInUserId ? <Button theme={theme} color='primary' href={`/users/${userId}/reportUser`} style={{width: '100%'}}>Report</Button>  : <Button disabled style={{width: '100%'}}>Report</Button> }
                     
                 </ButtonGroup>
-          
-                 <Avatar
-                  srcSet={user.img_url}
-                  sx={{ width: '80%', height: 'auto',marginBottom: '15px', marginTop: '15px'}}
-                   loading='lazy'
-                    />
+                <img
+                width='90%'
+                height='auto' 
+                crossOrigin='true'
+                alt='avatar'
+                style={{borderRadius: '50%'}} 
+                src={user.img_url} />
                 <Typography variant='h4'>{user.first_name}</Typography>
                 <Typography variant='h4'>{user.last_name}</Typography>
               

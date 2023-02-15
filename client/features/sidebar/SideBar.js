@@ -44,13 +44,6 @@ const SideBar = ({receiverId, setReceiverId}) => {
   return (
     <div>
       <Stack direction="column" padding="1rem">
-        <Stack direction="row" justifyContent="space-evenly" width="100%">
-          <Typography variant="h6">Add Friend</Typography>
-          <Button variant="contained" color="primary" size="small">
-            <ChatBubble />
-          </Button>
-        </Stack>
-        <Divider />
         {/* We can use the TabContext to control the state of the tabs, and the Tablist to display the tabs, we need to put our tabs in a stack to control the width of the tabs */}
         <TabContext value={view}>
           <TabList
@@ -60,7 +53,6 @@ const SideBar = ({receiverId, setReceiverId}) => {
             allowScrollButtonsMobile
           >
             <Tab label="Friends" value="1" />
-            <Tab label="Requests" value="2" />
             <Tab label="Blocked" value="3" />
           </TabList>
         </TabContext>
@@ -68,7 +60,16 @@ const SideBar = ({receiverId, setReceiverId}) => {
         <Stack direction="column" padding="1rem">
           {friends && friends.length ?
             friends.map((friend) =>
-              <Stack direction="row" justifyContent="space-between" alignItems="center">
+              <Stack direction="row" justifyContent="space-between" alignItems="center" 
+                style={{padding:'10px', overflow:'hidden', borderBottom:'1px solid black', borderRadius:'5px', margin:'5px'}}
+              >
+
+                <img
+                  //if the user has a profile picture, we will display it, otherwise we will display a default image
+                  src={friend.img_url === 'default_user.jpg' ? '/default_user.jpg': `${friend.img_url}`}
+                  alt="profile"
+                  style={{ width: "50px", height: "50px", borderRadius: "50%" }}
+                />
                 <Typography variant="h6">{friend.first_name} {friend.last_name}</Typography>
                 <Button variant="contained" color="primary" size="small" onClick={() => handleGetChat(friend.id)}>
                   {/*if chatButton is clicked, we will change the view to the chatbox */}

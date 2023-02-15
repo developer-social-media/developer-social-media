@@ -26,17 +26,17 @@ const Messages = () => {
         <Box sx={{ flexGrow: 1 }}>
         <Typography variant="h4">Messages</Typography>
         <Box sx={{ flexGrow: 1 }}>
-            <Grid container spacing={2} columns={10} value={Tabs}>
+            <Grid container spacing={2} columns={10} value={Tabs} height='100vh' >
                 {/*the first column uses 30% of the screen */}
                 <Grid item xs={3}>
-                    <Box sx={{ bgcolor: "grey.300", height: "100vh" }}>
+                    <Box sx={{ bgcolor: "#023c40", height: "100vh", borderRadius:"10px", padding:'10px' }}>
                         <SideBar receiverId={receiverId} setReceiverId={setReceiverId}/>
                         {/*the second column uses 70% of the screen */}
                     </Box>
                 </Grid>
-                <Grid item xs={7}>
+                <Grid item xs={7} maxHeight="100vh" overflow='scroll'>
                     {/*the chatbox stays in the middle of the screen */}
-                    <Box sx={{ bgcolor: "grey.300", height: "100vh" }}>
+                    <Box sx={{ bgcolor: "#023c40", borderRadius:'10px', height: '100vh', width: '70%', position:'absolute', overflow:'scroll'}}>
                         <Chatbox receiverId={receiverId}/>
                     </Box>
                 </Grid>

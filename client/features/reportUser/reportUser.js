@@ -86,7 +86,7 @@ const ReportUser = () => {
                 // type="text"
                 onChange={(e) => message.current = e.target.value}
                 />
-                <Button spacing='2rem' variant='contained' onClick={handleSubmit}>Submit</Button>
+                <Button spacing='2rem' variant='contained' theme={theme} color="primary" onClick={handleSubmit}>Submit</Button>
             </FormControl>
         </Stack>
         </>

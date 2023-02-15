@@ -1,7 +1,10 @@
-import { Box, Container } from "@mui/material";
+import { Box, Container, Card } from "@mui/material";
 import React from "react";
 
 const ContactUs = () => {
+
+  
+
   return (
     <Box
     sx={{
@@ -9,14 +12,25 @@ const ContactUs = () => {
     }}
     >
       <Container maxWidth='sm'>
-      <div>
-        <h1>Contact Us</h1>
-        <p>You were banned because:  "Bannable Offense"</p>
-        <p>
-          For any questions or concerns, please contact us at:{" "}
-          <a href="mailto:"></a>
-        </p>
-      </div>
+        <Card
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          height: '100vh',
+          width: '100%',
+          objectFit: 'cover'
+        }}>
+          <h1>Contact Us</h1>
+          <p>Phone: 1-800-555-5555</p>
+          <p>Email: test@email.com</p>
+          <img
+            src='contactUs.jpg'
+            alt='contact us'
+            style={{ width: '100%', height: '100%' }}
+          />
+        </Card>
       </Container>
       </Box>
   );

@@ -173,13 +173,30 @@ const [description, setDescription] = useState(feedItem.description)
               </FormControl> : null}
                 {feedItem.project && feedItem.project.project_name && !edit ?
                 <div style={{display: 'flex', flexDirection: 'row', alignItems:'center'}}>
-                   <Link to={`/users/${feedItem.userId}`}> <Avatar src={feedItem.user.img_url} /> </Link>
+                   <Link to={`/users/${feedItem.userId}`}> 
+                   <img
+                width='35px'
+                height='auto' 
+                crossOrigin='true'
+                alt='avatar'
+                style={{borderRadius: '50%', marginRight: '10px'}} 
+                src={feedItem.user.img_url} 
+                />
+                    </Link>
                  <Link style={{margin: '5px'}} to={`/users/${feedItem.userId}`}><div>{feedItem.user.first_name} {feedItem.user.last_name} </div> </Link>
                  <ArrowForwardIcon />
                  <Link style={{margin: '5px'}} to={`/project/${feedItem.projectId}`}><div>{feedItem.project.project_name}</div></Link>
                  </div> : !edit ?
                  <div style={{display: 'flex', flexDirection: 'row', alignItems:'center'}}>
-                 <Link  to={`/users/${feedItem.userId}`}> <Avatar src={feedItem.user.img_url} /> </Link>
+                 <Link  to={`/users/${feedItem.userId}`}> 
+                 <img
+                width='35px'
+                height='auto' 
+                crossOrigin='true'
+                alt='avatar'
+                style={{borderRadius: '50%', marginRight: '10px'}} 
+                src={feedItem.user.img_url} 
+                /> </Link>
                  <Link style={{margin: '5px'}} to={`/users/${feedItem.userId}`}><div>{feedItem.user.first_name} {feedItem.user.last_name} </div></Link> 
                  </div> 
                  : null }
