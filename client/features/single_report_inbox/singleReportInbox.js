@@ -50,7 +50,7 @@ const SingleReport = () => {
     spacing='2rem'
     width={{base: '90%', md: '500px'}}
     margin='auto'
-    height='100vh' 
+    height='100vh'
     >
       <Box
         sx={{
@@ -82,7 +82,7 @@ const SingleReport = () => {
           <option value="resolved">resolved</option>
         </select>
         <br></br>
-        <Button variant='contained' theme={theme} color="primary onClick={handleUpdateStatus}>Update</Button>
+        <Button variant='contained' theme={theme} color="primary" onClick={handleUpdateStatus}>Update</Button>
       </Box>
     </Stack>
   );
