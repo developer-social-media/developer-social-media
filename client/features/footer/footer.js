@@ -31,6 +31,9 @@ const StickyFooter = () => {
         display: 'flex',
         flexDirection: 'column',
         minheight: '100vh',
+        position: 'fixed',
+        width: '100%',
+        bottom: 0,
       }}
     >
       <CssBaseline />

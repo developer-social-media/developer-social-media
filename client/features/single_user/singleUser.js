@@ -107,7 +107,7 @@ console.group(user.img_url)
                 crossOrigin='true'
                 alt='avatar'
                 style={{borderRadius: '50%'}} 
-                src={user.img_url} />
+                src={user.img_url === 'default_user.jpg' ? '/default_user.jpg' : user.img_url} />
                 <Typography variant='h4'>{user.first_name}</Typography>
                 <Typography variant='h4'>{user.last_name}</Typography>
               
