@@ -15,9 +15,9 @@ const SingleReport = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
-  console.log("userId", id);
+
   const user = useSelector(selectReport);
-  console.log("user", user);
+
   const { admin_response, report_status } = user;
   const [response, setResponse] = useState(admin_response);
   const [status, setStatus] = useState(report_status);
@@ -40,7 +40,6 @@ const SingleReport = () => {
         admin_response: response,
         report_status: status,
     };
-    console.log("updatedReport", updatedReport);
     dispatch(updateReportAsync(updatedReport));
     navigate("/report");
   };

@@ -75,13 +75,6 @@ const commentLikeButton = (comment) => {
 }
 
 
-  // useEffect(() => {
-  //   console.log("fetching Comments")
-  //   dispatch(asyncFetchComments())
-    
-  // }, [commentRender])
-
-  
 
 
 

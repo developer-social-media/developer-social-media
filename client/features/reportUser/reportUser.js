@@ -13,13 +13,11 @@ const ReportUser = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { userId } = useParams();
-    console.log("userId", userId);
+
     //convert userId to username
 
     const user = useSelector(selectUser);
-    console.log("user", user);
     const { username } = user;
-    console.log("username", username);
     const [error, setError] = useState(null);
     const reportTypes = ["Inappropriate Content", "Spam", "Harassment", "Other"];
     const [reportType, setReportType] = useState(reportTypes[0]);

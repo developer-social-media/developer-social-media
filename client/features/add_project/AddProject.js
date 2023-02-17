@@ -33,7 +33,6 @@ const AddProject = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('project', project)
         dispatch(addProjectAsync(project));
         navigate(`/home`);
     }

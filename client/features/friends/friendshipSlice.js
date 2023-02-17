@@ -17,7 +17,6 @@ export const fetchFriendshipById = createAsyncThunk('getfriendship', async (user
     console.log(userId, profileId, 'inside asyncthun' )
       const {data} = await axios.get(`/api/friendship`);
       let userFriendship = data.filter(friendship => friendship.userId == userId && friendship.friendId == profileId )
-      console.log('userFriendship', userFriendship)
       return userFriendship
   }
   catch (error) {
@@ -27,7 +26,6 @@ export const fetchFriendshipById = createAsyncThunk('getfriendship', async (user
 
 export const createFriendship = createAsyncThunk('createFriendship',  async (friendship) => {
   try {
-    console.log("friendship in slice", friendship)
     const { data } = await axios.post('/api/friendship', friendship)
     return data
 

@@ -9,7 +9,7 @@ import theme from "../../app/theme";
 const AllSupport = () => {
     const dispatch = useDispatch();
     const supportTickets = useSelector(selectAllSupport);
-    console.log("supportTickets", supportTickets);
+
 
     useEffect(() => {
         dispatch(fetchAllSupportAsync());

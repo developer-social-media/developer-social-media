@@ -74,20 +74,17 @@ const SingleUser = () => {
             is_banned: !banned,
             ban_status: bannedType
           }
-        console.log('-------------',banUpdate)
         if(bannedType === banStatus[0]) {
             setBannedType(banStatus[1])
-            console.log('------------------',bannedType)
         } else {
             setBannedType(banStatus[0])
         }
-        console.log('banUpdate', banUpdate)
         dispatch(banUserAsync(banUpdate))
         navigate(`/users/${userId}`)
     }
 
-    console.log(userId, loggedInUserId, "userId and loggedinuserId")
-console.group(user.img_url)
+
+// console.group(user.img_url)
 
 
 

@@ -25,7 +25,7 @@ function TabPanel(props) {
     >
       {value === index && (
         <Box sx={{ p: 2 }}>
-          <Typography>{children}</Typography>
+          <div>{children}</div>
         </Box>
       )}
     </div>
@@ -64,7 +64,7 @@ export default function FriendList() {
       <TabPanel value={value} index={0}>
         {user.friends && user.friends.length ?
           user.friends.map((friend) =>
-            <Link to={`/users/${friend.id}`}>
+            <Link key={`friendlist-${Math.floor(Math.random() * 10000)}`} to={`/users/${friend.id}`}>
               <div style={{ display: 'flex', alignItems: 'center' }}>
                 <img
                 width='35px'
@@ -82,7 +82,7 @@ export default function FriendList() {
       <TabPanel value={value} index={1}>
         {user.projects && user.projects.length ?
           user.projects.map((project) =>
-            <Link to={`/project/${project.id}`}>
+            <Link key={`project-list-${Math.floor(Math.random() * 10000)}`} to={`/project/${project.id}`}>
               <div style={{ display: 'flex', alignItems: 'center' }}>
                 <CodeIcon />
                 <div style={{ marginLeft: '10px' }} >{project.project_name}</div>

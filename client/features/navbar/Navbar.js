@@ -30,6 +30,7 @@ import Stack from "@mui/material/Stack";
 import theme from "../../app/theme";
 
 
+
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
     backgroundColor: "#44b700",
@@ -116,7 +117,11 @@ const Navbar = () => {
               <Container maxWidth="xl" spacing={2} theme={theme} color='primary'>
                 <Grid item xs={12} container color='primary'>
                   <Link to='/'>
-                  <img style={{height: '50px'}} src='devupsocialnavbar.png' />
+                  <img 
+                  style={{height: '50px'}} 
+                  src='devupsocialnavbar.png'
+                  crossOrigin='true'
+                  />
                   </Link>
                   <Tooltip title="Account Settings" display="flex">
                     <IconButton

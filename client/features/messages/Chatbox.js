@@ -16,7 +16,6 @@ const Chatbox = ({receiverId}) => {
   //pulls the user's friends from the redux store
   const user = useSelector(selectUser);
   const chat = useSelector(selectChat);
-  console.log(chat, "chat")
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const bottomDiv = useRef(null);

@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { clearFeed, fetchGlobalFeed, selectGlobalFeed } from './globalfeedslice';
+import { clearFeed, fetchGlobalFeed, fetchGlobalFeedByPages, selectGlobalFeed } from './globalfeedslice';
 import { asyncFetchComments, selectComments } from './commentslice';
 import { asyncFetchPostLikes, selectPostLikes } from './postlikesslice';
 import { Box, Container, Stack, Avatar } from '@mui/material';
@@ -8,7 +8,7 @@ import FeedPost from './FeedPost';
 import FeedProject from './FeedProject';
 import { asyncFetchCommentLikes, selectCommentLikes } from './commentlikeslice';
 import { BookSharp, ConstructionOutlined } from '@mui/icons-material';
-import { restartUserFeed, fetchUserFeedById, selectUserFeed, resetUserFeed } from './userfeedslice'
+import { restartUserFeed, fetchUserFeedById, selectUserFeed, resetUserFeed, fetchUserFeedByPages } from './userfeedslice'
 import { useParams } from 'react-router-dom';
 
 
@@ -22,26 +22,25 @@ const UserFeed = ({profileId}) => {
   const dispatch = useDispatch()
   const allPostLikes = useSelector(selectPostLikes)
   const feed = useSelector(selectUserFeed)
-  console.log('this is feed', feed)
  
-  const [pageNumber, setPageNumber] = useState(1)
+  const [userPageNumber, setUserPageNumber] = useState(1)
   const { userId } = useParams();
 
   
 
 useEffect(() => {
-  dispatch(resetUserFeed())
+  dispatch(fetchUserFeedByPages({profileId, userPageNumber}))
 },[userId])
 
   useEffect(() => {
       const params = {
-        page: pageNumber,
+        page: userPageNumber,
         limit: 10,
         id: profileId
       } 
       dispatch(fetchUserFeedById(params))
   
-  },[pageNumber])
+  },[userPageNumber])
 
   const observer = useRef()
 
@@ -52,9 +51,7 @@ useEffect(() => {
     observer.current = new IntersectionObserver(entries => {
       if(entries[0].isIntersecting) {
        
-        console.log('visible')
-        setPageNumber(pageNumber + 1)
-        console.log(pageNumber,'pageNumber')
+        setUserPageNumber(userPageNumber + 1)
       }
 
     }) 
@@ -75,18 +72,19 @@ useEffect(() => {
       {feed && feed.length ? (
         feed.map((feedItem, index) => (
           feedItem.modelType === 'post' && (feed.length === index + 1) ? 
-          <div ref={lastFeedItemref} > 
+          <div ref={lastFeedItemref} key={`userfeedItem-${Math.floor(Math.random() * 10000)}`}> 
           <FeedPost
           
           key={Math.floor(Math.random() * 10000)} 
           feedItem={feedItem} 
           profileId={profileId}
+          userPageNumber={userPageNumber}
           />
           </div>
           : 
           
           feedItem.modelType === 'project' && (feed.length === index + 1) ? 
-          <div ref={lastFeedItemref}>
+          <div ref={lastFeedItemref}  key={`userfeedItem-${Math.floor(Math.random() * 10000)}`}>
           <FeedProject ref={lastFeedItemref} key={Math.floor(Math.random() * 10000)} feedItem={feedItem} />
           </div>
  
@@ -97,6 +95,7 @@ useEffect(() => {
           key={Math.floor(Math.random() * 10000)} 
           feedItem={feedItem} 
           profileId={profileId}
+          userPageNumber={userPageNumber}
           />
           :
           feedItem.modelType === 'project' ? 

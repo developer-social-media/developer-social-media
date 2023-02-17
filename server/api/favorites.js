@@ -13,7 +13,6 @@ router.get('/', async(req, res, next)=>{
 router.post('/',async(req, res, next) => {
   try {
     const newFavorite = await Favorite.create(req.body);
-    console.log(req.body)
     res.send(newFavorite);
   } catch (error) {
     next(error);

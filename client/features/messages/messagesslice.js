@@ -7,7 +7,6 @@ import axios from "axios";
 
 export const fetchChat = createAsyncThunk('fetchChat', async ({userId, otherId}) => {
   try{
-    console.log(userId, otherId)
     const { data } = await axios.get('/api/message')
    const chat = data.filter((message) => (message.senderId === userId && message.receiverId === otherId) || (message.senderId === otherId && message.receiverId === userId) )
 
@@ -24,7 +23,6 @@ export const fetchChat = createAsyncThunk('fetchChat', async ({userId, otherId})
 
 //send a message
 export const sendMessage = createAsyncThunk('sendMessage', async ({senderId, receiverId, content}) => {
-  console.log(senderId, receiverId, content, 'senderId, receiverId, content')
   try{
     const { data } = await axios.post('/api/message', {senderId, receiverId, content})
     return data

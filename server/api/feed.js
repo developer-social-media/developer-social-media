@@ -10,7 +10,6 @@ router.get("/", async (req, res, next) => {
     const page = parseInt(req.query.page);
     const limit = parseInt(req.query.limit)
     const user = req.query.user
-    console.log(req.params, 'req params dawg')
     const startIndex = (page - 1) * limit
     const endIndex = page * limit
 

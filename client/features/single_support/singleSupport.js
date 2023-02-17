@@ -55,7 +55,6 @@ const SingleSupport = () => {
       priority: priority,
       admin_comment: adminComment,
     };
-    console.log("updatedSupport", updatedSupport);
     dispatch(updateSingleSupportAsync(updatedSupport));
     navigate("/supportTickets");
   };

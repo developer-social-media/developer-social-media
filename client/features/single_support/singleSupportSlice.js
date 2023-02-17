@@ -15,12 +15,10 @@ export const fetchSingleSupportAsync = createAsyncThunk('singleSupport', async (
 
 //update a single support request
 export const updateSingleSupportAsync = createAsyncThunk('updateSingleSupport', async (support) => {
-    console.log('support in updateSupportAsync', support)
     try {
         const { id, admin_comment, status, priority } = support;
         const updatedSupport = { status, priority, admin_comment};
         const {data} = await axios.put(`/api/support/${id}`, updatedSupport);
-        console.log('data', data)
         return data;
     } 
     catch (error) {

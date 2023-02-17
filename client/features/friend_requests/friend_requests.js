@@ -41,11 +41,8 @@ const FriendRequests = () => {
   }
 
   const handleRejectFriendRequest = (friendship) => {
-    console.log("hello")
     dispatch(deleteFriendship(friendship.id))
-    console.log(renderFriendRequests)
     setRenderFriendRequests(!renderFriendRequests)
-    console.log(renderFriendRequests)
   }
 
   // TODO: Inconsistent rendering of requests

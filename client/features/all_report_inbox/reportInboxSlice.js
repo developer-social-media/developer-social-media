@@ -19,7 +19,6 @@ const reportSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(fetchReportsAsync.fulfilled, (state, action) => {
-            console.log(action.payload, "action.payload");
             return action.payload
         })
     }

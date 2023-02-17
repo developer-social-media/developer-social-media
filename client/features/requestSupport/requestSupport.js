@@ -12,9 +12,9 @@ const RequestSupport = () => {
     const userId = useSelector((state) => state.auth.me.id);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    console.log("userId", userId);
+
     //convert userId to username
-    console.log("username", username);
+
     const [error, setError] = useState(null);
     const requestTypes = ["Bugs", "Feature Request", "Survey", "Other"];
     const [requestType, setRequestType] = useState(requestTypes[0]);
@@ -39,7 +39,6 @@ const RequestSupport = () => {
             type_of_request: requestType,
             description: requestDescription,
         };
-        console.log("request", request);
         dispatch(requestBugFeatureSurveyAsync(request)).then((res) => {
             if (res.error) {
                 setError(res.payload);

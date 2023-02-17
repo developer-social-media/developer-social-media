@@ -40,9 +40,7 @@ const Login = () => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      console.log(values);
       dispatch(authenticate(values, "login")).then((res) => {
-        console.log(res);
         if (res.payload) {
           setError(res.payload);
         } else {
@@ -99,7 +97,7 @@ const Login = () => {
       spacing="1rem"
       width={{ base: "90%", md: "500px" }}
       margin="auto"
-      height="35vh"
+      height={{ base: "90%", md: "300px" }}
       noValidate
       autoComplete="off"
       onSubmit={formik.handleSubmit}
@@ -114,6 +112,7 @@ const Login = () => {
       </Typography>
 
       <TextField
+ 
         fullWidth
         id="email"
         name="email"

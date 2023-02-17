@@ -11,13 +11,13 @@ import { asyncCreateComment, asyncFetchComments } from './commentslice';
 import { asyncFetchCommentLikes } from './commentlikeslice';
 import { asyncDeletePost, asyncFetchPosts, asyncUpdatePost } from './postslice';
 import { HighlightOff } from '@mui/icons-material';
-import { fetchUserFeedById } from './userfeedslice';
+import { fetchUserFeedById, fetchUserFeedByPages } from './userfeedslice';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import theme from "../../app/theme";
 /**
  * COMPONENT
  */
-const FeedPost = ({feedItem, renderPostLikes, setRenderPostLikes, renderComments, setRenderComments, profileId, pageNumber}) => {
+const FeedPost = ({feedItem, renderPostLikes, setRenderPostLikes, renderComments, setRenderComments, profileId, pageNumber, userPageNumber}) => {
 
 const [likeButton, setLikeButton] = useState('')
 const [edit, setEdit] = useState(false)
@@ -41,7 +41,7 @@ const [description, setDescription] = useState(feedItem.description)
 
 
 
-  console.log(pageNumber, 'pagenumber in freedpost comnponent')
+
 
 
 
@@ -65,24 +65,34 @@ const [description, setDescription] = useState(feedItem.description)
       }
       dispatch(asyncCreateLike(like)).then(() => {
         if (profileId) {
-          dispatch(fetchUserFeedById(profileId))
-        } else dispatch(fetchGlobalFeedByPages(pageNumber))
-        
+          
+          dispatch(fetchUserFeedByPages({profileId, userPageNumber}))
+          dispatch(asyncFetchPostLikes())
+         dispatch(asyncFetchPosts())
+        } else {
+           dispatch(fetchGlobalFeedByPages(pageNumber))
+           dispatch(asyncFetchPostLikes())
+           dispatch(asyncFetchPosts())
+        }
       })
-      
-      dispatch(asyncFetchPostLikes())
-      dispatch(asyncFetchPosts())
 
     }
 
 
   const handleDeleteLike = (userId, postId) => {
     let id = postLikeCheck[0].id;
-    dispatch(asyncDeleteLike(id))
-    dispatch(fetchGlobalFeedByPages(pageNumber))
-    dispatch(asyncFetchPostLikes())
-    dispatch(asyncFetchPosts())
+    dispatch(asyncDeleteLike(id)).then(() =>{
+      if (profileId) {
+        dispatch(fetchUserFeedByPages({profileId, userPageNumber}))
+        dispatch(asyncFetchPostLikes())
+         dispatch(asyncFetchPosts())
+      } else {
+        dispatch(fetchGlobalFeedByPages(pageNumber))
+         dispatch(asyncFetchPostLikes())
+         dispatch(asyncFetchPosts())
+      }
 
+    })
   }
 
 
@@ -108,7 +118,6 @@ const [description, setDescription] = useState(feedItem.description)
     e.preventDefault();
     dispatch(asyncDeletePost(feedItem.id)).then(() => {
       if(!!profileId) {
-        console.log("does this fire?")
         dispatch(fetchUserFeedById(profileId))
       } else  dispatch(fetchGlobalFeedByPages(pageNumber))
     })
@@ -134,10 +143,10 @@ const [description, setDescription] = useState(feedItem.description)
     }
     dispatch(asyncUpdatePost(updatedPost)).then(() => {
       if(!!profileId) {
-        console.log("does this fire?")
         dispatch(fetchUserFeedById(profileId))
       } else  dispatch(fetchGlobalFeedByPages(pageNumber))
     })
+    setEdit(!edit)
 
 
   }

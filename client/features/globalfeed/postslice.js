@@ -26,7 +26,7 @@ export const asyncCreatePost = createAsyncThunk('createPost', async (newPost) =>
 
 export const asyncDeletePost = createAsyncThunk('deletePost', async (id) => {
 
-  console.log(id, 'id in api call')
+
   const {data} = await axios.delete(`/api/post/${id}`)
   return data
 

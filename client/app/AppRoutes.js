@@ -38,8 +38,7 @@ const AppRoutes = () => {
   const isBanned = useSelector((state) => state.auth.me.is_banned);
   const isAdmin = useSelector((state) => state.auth.me.is_admin);
   const dispatch = useDispatch();
-  console.log("is logged in ", isLoggedIn);
-  console.log("is banned ", isBanned);
+
 
   useEffect(() => {
     if (router.search.includes("token")) {

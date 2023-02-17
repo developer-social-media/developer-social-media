@@ -18,7 +18,6 @@ export const asyncFetchPostLikes = createAsyncThunk("fetchPostLikes", async () =
 });
 
 export const asyncCreateLike = createAsyncThunk('createLike', async (like) => {
-  console.log(like)
   const {data } = await axios.post('/api/postlike', like);
   return data
 
@@ -27,7 +26,6 @@ export const asyncCreateLike = createAsyncThunk('createLike', async (like) => {
 
 export const asyncDeleteLike = createAsyncThunk('deleteLike', async (id) => {
 
-  console.log(id, 'id in api call')
   const {data} = await axios.delete(`/api/postlike/${id}`)
   return data
 

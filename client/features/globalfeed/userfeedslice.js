@@ -42,6 +42,26 @@ export const restartUserFeed = createAsyncThunk("restartUserFeed", async () => {
   }
 });
 
+export const fetchUserFeedByPages = createAsyncThunk("fetchUserFeedByPages", async ({profileId , userPageNumber}) => {
+  try {
+    const newLimit = userPageNumber * 10
+    const {data} = await axios.get(`/api/userfeed/${profileId}`, {params: {
+      page: 1,
+      limit: newLimit,
+    } });
+
+    
+
+    return data
+
+
+
+
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 
 
 const userFeedSlice = createSlice({
@@ -53,6 +73,9 @@ const userFeedSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchUserFeedById.fulfilled, (state, action) => {
       action.payload.results.forEach((item) => state.push(item))
+    });
+    builder.addCase(fetchUserFeedByPages.fulfilled, (state, action) => {
+      return action.payload.results
     });
   },
 });

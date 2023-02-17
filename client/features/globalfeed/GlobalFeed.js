@@ -46,7 +46,6 @@ const GlobalFeed = ({profileId}) => {
       description: description.current,
       title: title.current,
     }
-    console.log(newPost, 'new post attempt')
     if (!!inputValue && inputValue.project_name !== 'You have no projects') {
       newPost.projectId = value.id
     }
@@ -58,6 +57,9 @@ const GlobalFeed = ({profileId}) => {
     })
   }
 
+  useEffect(() => {
+    dispatch(resetGlobalFeed())
+  },[dispatch])
 
 
   useEffect(() => {
@@ -161,10 +163,9 @@ const GlobalFeed = ({profileId}) => {
       {globalFeed && globalFeed.length ? (
         globalFeed.map((feedItem, index) => (
           feedItem.modelType === 'post' && (globalFeed.length === index + 1) ? 
-          <div ref={lastFeedItemref} > 
+          <div key={`feedItem-post-${feedItem.id}`} ref={lastFeedItemref} > 
           <FeedPost
           pageNumber={pageNumber}
-          key={Math.floor(Math.random() * 10000)} 
           feedItem={feedItem} 
           profileId={profileId}
           />
@@ -172,21 +173,21 @@ const GlobalFeed = ({profileId}) => {
           : 
           
           feedItem.modelType === 'project' && (globalFeed.length === index + 1) ? 
-          <div ref={lastFeedItemref}>
+          <div key={`feedItem-project-${feedItem.id}`} ref={lastFeedItemref}>
           <FeedProject ref={lastFeedItemref} key={Math.floor(Math.random() * 10000)} feedItem={feedItem} />
           </div>
  
             : 
           feedItem.modelType === 'post' ? 
           <FeedPost
+          key={`feedItem-post-${feedItem.id}`}
           pageNumber={pageNumber}
-          key={Math.floor(Math.random() * 10000)} 
           feedItem={feedItem} 
           profileId={profileId}
           />
           :
           feedItem.modelType === 'project' ? 
-         <FeedProject key={Math.floor(Math.random() * 10000)} feedItem={feedItem} />
+         <FeedProject key={`feedItem-project-${feedItem.id}`} feedItem={feedItem} />
 
            : 
            

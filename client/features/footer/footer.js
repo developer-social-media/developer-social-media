@@ -12,7 +12,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="text.secondary">
+    <div variant="body2" color="text.secondary">
       {'Copyright © '}
       {new Date().getFullYear()}
       {'.'}
@@ -20,7 +20,7 @@ function Copyright() {
       <Link color="inherit" href='https://instagram.com'><InstagramIcon/></Link>
       <Link color="inherit" href='https://facebook.com'><FacebookIcon/></Link>
       <Link color="inherit" href='https://linkedin.com'><LinkedInIcon/></Link>
-    </Typography>
+    </div>
   );
 }
 

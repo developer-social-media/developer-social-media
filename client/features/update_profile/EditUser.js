@@ -37,7 +37,6 @@ const EditUser =()=> {
          about_me: about_me,
           skill_level: inputValue
         }
-    console.log(editedUser, 'editedUser')
     dispatch(editUser(editedUser));
   }
 

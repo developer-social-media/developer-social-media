@@ -56,9 +56,7 @@ const SignUp = () => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      console.log(values, "values");
       dispatch(authenticate(values, "signup")).then((res) => {
-        console.log(res, "res");
         if (res.error) {
           setError(res.payload);
         } else {
@@ -150,13 +148,13 @@ const SignUp = () => {
             error={formik.touched.last_name && Boolean(formik.errors.last_name)}
             helperText={formik.touched.last_name && formik.errors.last_name}
           />
-          <Typography variant="h4" align="center" color="error">
+          <div variant="h4" align="center" color="error">
             {error === "Username already in use!" && (
               <p className="uppercase bg-red text-xl font-large bg-red-400">
                 {error}
               </p>
             )}
-          </Typography>
+          </div>
           
           <TextField
             fullWidth

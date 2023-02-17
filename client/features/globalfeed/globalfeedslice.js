@@ -27,7 +27,6 @@ export const fetchGlobalFeed = createAsyncThunk("fetchGlobalFeed", async ({page,
 
 export const fetchGlobalFeedByPages = createAsyncThunk("fetchGlobalFeedByPages", async (page) => {
   try {
-    console.log(page, 'this is page')
     page = parseInt(page)
     const newLimit = page * 10
     const {data} = await axios.get("/api/feed", {params: {

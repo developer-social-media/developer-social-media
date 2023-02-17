@@ -13,7 +13,6 @@ export const fetchUserAsync = createAsyncThunk('user', async (id) => {
 
 export const editUser = createAsyncThunk( 'editUser ', async (updateUser)=>{
     try{
-        console.log(updateUser, 'udpate user')
         const id = updateUser.id
         const {data} = await axios.put(`/api/users/${id}`,{
             first_name: updateUser.first_name,
@@ -35,7 +34,6 @@ export const reportUserAsync = createAsyncThunk('reportUser', async ({report}, i
         const { id, reportee, reason_for_report, message } = report;
         const reportedUser = {reportee, reason_for_report, message};
         const {data} = await axios.post(`/api/users/${id}/reportUser`, reportedUser);
-        console.log('data', data)
         return data;
     }
     catch (error) {
@@ -45,12 +43,10 @@ export const reportUserAsync = createAsyncThunk('reportUser', async ({report}, i
 
 //bans a user
 export const banUserAsync = createAsyncThunk('banUser', async (banUpdate) => {
-    console.log('banUpdate in banUserAsync', banUpdate)
     try {
         const { id, is_banned, ban_status } = banUpdate;
         const updatedUser = {is_banned, ban_status};
         const {data} = await axios.put(`/api/users/${id}/ban`, updatedUser);
-        console.log('data', data)
         return data;
     }
     catch (error) {
@@ -60,12 +56,10 @@ export const banUserAsync = createAsyncThunk('banUser', async (banUpdate) => {
 
 //report a bug/feature request or survey
 export const requestBugFeatureSurveyAsync = createAsyncThunk('requestBugFeatureSurvey', async (request) => {
-    console.log('request in bug feature', request)
     try {
         const { username, type_of_request, description} = request;
         const newRequest = {username, type_of_request, description};
         const {data} = await axios.post(`/api/support`, newRequest);
-        console.log('data for bug feature', data)
         return data;
     }
     catch (error) {
@@ -93,7 +87,6 @@ const userSlice = createSlice({
         builder.addCase(banUserAsync.fulfilled, (state, action) => {
             state.is_banned = action.payload.is_banned
             state.ban_status = action.payload.ban_status
-            console.log('state in banUserAsync', state)
             return state
         });
     }

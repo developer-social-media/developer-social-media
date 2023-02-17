@@ -30,8 +30,7 @@ const PostLikes = ({feedItem}) => {
 
   const currentPost = allPosts && allPosts.length ? allPosts.filter(post => feedItem.id === post.id) : null
 
-// const postLikes = currentPost[0].post_likes
-// console.log(postLikes)
+
 
 
 
