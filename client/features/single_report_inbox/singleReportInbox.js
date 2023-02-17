@@ -49,7 +49,7 @@ const SingleReport = () => {
     spacing='2rem'
     width={{base: '90%', md: '500px'}}
     margin='auto'
-    height='100vh' 
+    height='100vh'
     >
       <Box
         sx={{
